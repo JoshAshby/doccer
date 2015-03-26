@@ -1,0 +1,134 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree ./utils/
+ *= require_self
+ */
+
+@import "colors/colors.scss";
+
+$padding: 1em;
+
+nav {
+  display: flex;
+  flex-flow: row wrap;
+  /*align-items: baseline;*/
+
+  background: $silver;
+
+  width: 100%;
+  height: 3em;
+
+  ul {
+    display: flex;
+    flex: 2;
+
+    height: 3em;
+
+    list-style-type: none;
+
+    margin: 0;
+    padding: 0;
+
+    &.left {
+      justify-content: flex-start;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+
+    li {
+      padding-top: $padding;
+      padding-left: $padding;
+      padding-right: $padding;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+div.flash {
+  width: 100%;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  padding-left: $padding;
+  padding-right: $padding;
+
+  &.alert {
+    background: $red;
+  }
+
+  &.notice {
+    background: $blue;
+  }
+}
+
+pre, blockquote, dl, figure, table, p, ul, ol, form {
+ margin-bottom: 1em;
+}
+
+table {
+  &.small-info {
+    font-size: smaller;
+  }
+
+  th:first-child, td:first-child {
+    padding-left: 10px;
+  }
+
+  th:last-child, td:last-child {
+    padding-right: 10px;
+  }
+
+  thead tr th {
+    padding-top: 6px;
+
+    padding-right: 10px;
+    padding-left: 10px;
+
+    text-align: center;
+
+    border: 1px solid $silver;
+  }
+
+  tbody tr td {
+    padding-top: 6px;
+
+    padding-right: 10px;
+    padding-left: 10px;
+
+    text-align: left;
+
+    border: 1px solid $silver;
+  }
+
+  code {
+    background: transparent;
+    border: 0px;
+  }
+}
+
+.backend {
+  display: none;
+}
+
+h2 {
+  margin-bottom: 0em;
+}
+
+.example {
+}

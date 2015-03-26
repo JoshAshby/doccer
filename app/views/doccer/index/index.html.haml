@@ -1,0 +1,65 @@
+- unless @introduction.blank?
+  = markdown(@introduction)
+  %hr
+
+- @routes.each do |controller|
+  %h2= controller.name.titlecase
+  - unless controller.description.blank?
+    = controller.description
+
+  .backend
+    %small
+      Location:
+      = link_to "file://#{controller.file}", "file://#{controller.file}"
+
+  - controller.actions.each do |action|
+    %hr
+    %pre
+      %code.language-http #{action.verbs.join(', ').upcase} #{action.path.split("(.:format)")[0]}
+
+    - if action.description
+      = action.description
+      %br
+      %br
+
+    - unless action.parameters.blank?
+      %strong Parameters
+      - param_table action.parameters
+
+    - unless action.example.blank?
+      .example
+        %strong Response Headers:
+        %pre
+          %code.language-http
+            Status: #{action.example.status}
+            %br
+            = action.example.headers
+
+        - unless action.example.response.blank?
+          %strong Response Body:
+          %pre
+            %code{ class: [("language-#{action.example.language}")] }
+              :preserve
+                #{action.example.response}
+
+    .backend
+      %table.small-info
+        %thead
+          %tr
+            %th Backend Info
+            %th
+        %tbody
+          %tr
+            %td
+              Controller Action
+            %td
+              %code
+                = action.controller_method
+
+          - unless action.name.blank?
+            %tr
+              %td
+                Route Name
+              %td
+                %code
+                  = action.name

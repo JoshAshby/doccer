@@ -1,0 +1,25 @@
+- title = yield :title
+!!! 5
+%html
+  %head
+    %title= title || "Doccer"
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
+    %link{ href: "//fonts.googleapis.com/css?family=Raleway:400,300,600", rel: "stylesheet", type: "text/css" }
+
+    = stylesheet_link_tag    "doccer/application", media: "all"
+    = javascript_include_tag "doccer/application"
+    = csrf_meta_tags
+
+  %body
+    %nav
+      %ul.left
+        %li= link_to "Docs", root_path
+
+      %ul.right
+
+    - flash.each do |k, v|
+      .flash{ class: [k] }
+        = v
+
+    .container
+      .two-half.column= yield
